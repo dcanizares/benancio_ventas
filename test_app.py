@@ -16,3 +16,13 @@ class Test_App(unittest.TestCase):
 
         # Verifico que el código de respuesta sea 200
         self.assertEqual(200, response.status_code)
+
+    def test_endpoint_iri_devuelve_h1_hola_soy_iruuu_y_status_200(self):
+
+        response = self.app.get('/iri')
+
+        self.assertEqual('<h1>Hola soy Iruuu</h1>', response.data.decode("utf-8"))
+
+        self.assertEqual(200, response.status_code)
+
+    
