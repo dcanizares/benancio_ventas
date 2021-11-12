@@ -47,7 +47,7 @@ class Test_App(unittest.TestCase):
             data=json.dumps({"primer_numero":3, "segundo_numero": 2}),
             content_type="application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado":5}))
+        self.assertEqual(json.dumps({"resultado":5}), response.data.decode("utf-8"))
         self.assertEqual(201, response.status_code)
 
     def test_post_endpoint_suma_con_10_y_20_retorna_30(self):
@@ -56,7 +56,7 @@ class Test_App(unittest.TestCase):
             data=json.dumps({"primer_numero":10, "segundo_numero": 20}),
             content_type="application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado":30}))
+        self.assertEqual(json.dumps({"resultado":30}), response.data.decode("utf-8"))
         self.assertEqual(201, response.status_code)
 
     def test_post_endpoint_resta_5_y_3_retorna_2(self):
@@ -65,7 +65,7 @@ class Test_App(unittest.TestCase):
             data = json.dumps({"primer_numero": 5, "segundo_numero": 3}),
             content_type = "application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado":2}))
+        self.assertEqual(json.dumps({"resultado":2}), response.data.decode("utf-8"))
         self.assertEqual(201, response.status_code)
     
     def test_post_endpoint_producto_11_y_3_retorna_33(self):
@@ -74,7 +74,7 @@ class Test_App(unittest.TestCase):
             data = json.dumps({"primer_numero": 11, "segundo_numero": 3}),
             content_type = "application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado": 33}))
+        self.assertEqual(json.dumps({"resultado": 33}), response.data.decode("utf-8"))
         self.assertEqual(201, response.status_code)
 
     def test_post_endpoint_razon_20_entre_5_retorna_4_y_status_200(self):
@@ -83,7 +83,7 @@ class Test_App(unittest.TestCase):
             data = json.dumps({"primer_numero": 20, "segundo_numero": 5}),
             content_type = "application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado": 4}))
+        self.assertEqual(json.dumps({"resultado": 4}), response.data.decode("utf-8"))
         self.assertEqual(201, response.status_code)
 
     def test_post_endpoint_razon_entre_10_y_0_retorna_status_400(self):
@@ -92,5 +92,5 @@ class Test_App(unittest.TestCase):
             data = json.dumps({"primer_numero": 10, "segundo_numero": 0}),
             content_type = "application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), json.dumps({"error": "Vuelva a la escuela!"}))
+        self.assertEqual(json.dumps({"error": "Vuelva a la escuela!"}), response.data.decode("utf-8"))
         self.assertEqual(400, response.status_code)
