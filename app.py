@@ -1,4 +1,5 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, jsonify
+import json
 
 app = Flask(__name__)
 
@@ -23,5 +24,6 @@ def saluda(nombre):
 def suma():
     datos = request.get_json()
     suma = int(datos["primer_numero"]) + int(datos["segundo_numero"])
+    respuesta = {"resultado": suma}
 
-    return Response(response=str(suma), status=201)
+    return json.dumps(respuesta), 201    # manera fea: return Response(response=json.dumps(respuesta), status=201)

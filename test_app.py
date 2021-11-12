@@ -46,7 +46,7 @@ class Test_App(unittest.TestCase):
             data=json.dumps({"primer_numero":3, "segundo_numero": 2}),
             content_type="application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), "5")
+        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado":5}))
         self.assertEqual(201, response.status_code)
 
     def test_post_endpoint_suma_con_10_y_20_retorna_30(self):
@@ -55,5 +55,6 @@ class Test_App(unittest.TestCase):
             data=json.dumps({"primer_numero":10, "segundo_numero": 20}),
             content_type="application/json"
         )
-        self.assertEqual(response.data.decode("utf-8"), "30")
+        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado":30}))
         self.assertEqual(201, response.status_code)
+
