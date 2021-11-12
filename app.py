@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Response, request
 
 app = Flask(__name__)
 
@@ -15,7 +15,13 @@ def iri():
 def charly():
     return '<h1>Hola soy Charly</h1>'
 
-@app.route('/saludar/<nombre>')
-def saludar(nombre):
+@app.route('/saluda/<nombre>')
+def saluda(nombre):
     return f'Hola soy {nombre}'
 
+@app.route('/suma', methods=['POST'])
+def suma():
+    datos = request.get_json()
+    suma = int(datos["primer_numero"]) + int(datos["segundo_numero"])
+
+    return Response(response=str(suma), status=201)

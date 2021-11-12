@@ -1,4 +1,4 @@
-
+import json
 import unittest
 from app import app
 
@@ -34,12 +34,26 @@ class Test_App(unittest.TestCase):
         self.assertEqual(200, response.status_code)
 
     def test_endpoint_saludar_con_parametro_devuelve_h1_con_parametro(self):
-        response = self.app.get('/saludar/rogelio')
+        response = self.app.get('/saluda/rogelio')
 
         self.assertEqual('Hola soy rogelio', response.data.decode("utf-8"))
 
         self.assertEqual(200, response.status_code)
 
-    
+    def test_post_endpoint_suma_con_2_y_3_retorna_5(self):
+        response = self.app.post(
+            "/suma",
+            data=json.dumps({"primer_numero":3, "segundo_numero": 2}),
+            content_type="application/json"
+        )
+        self.assertEqual(response.data.decode("utf-8"), "5")
+        self.assertEqual(201, response.status_code)
 
-    
+    def test_post_endpoint_suma_con_10_y_20_retorna_30(self):
+        response = self.app.post(
+            "/suma",
+            data=json.dumps({"primer_numero":10, "segundo_numero": 20}),
+            content_type="application/json"
+        )
+        self.assertEqual(response.data.decode("utf-8"), "30")
+        self.assertEqual(201, response.status_code)
