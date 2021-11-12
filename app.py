@@ -42,3 +42,17 @@ def producto():
     respuesta = {"resultado" : producto}
 
     return json.dumps(respuesta), 201
+
+@app.route('/razon', methods = ['POST'])
+def razon():
+    datos = request.get_json()
+    try:
+        cociente = int(datos["primer_numero"]) / int(datos["segundo_numero"])
+        respuesta = {"resultado" : int(cociente)}
+        status_code = 201
+    except ZeroDivisionError:
+        respuesta = {"error": "Vuelva a la escuela!"}
+        status_code = 400
+        
+
+    return json.dumps(respuesta), status_code

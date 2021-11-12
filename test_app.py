@@ -1,4 +1,5 @@
 import json
+from os import error
 import unittest
 from app import app
 
@@ -31,7 +32,7 @@ class Test_App(unittest.TestCase):
 
         self.assertEqual('<h1>Hola soy Charly</h1>', response.data.decode("utf-8"))
 
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(200, response.status_code) 
 
     def test_endpoint_saludar_con_parametro_devuelve_h1_con_parametro(self):
         response = self.app.get('/saluda/rogelio')
@@ -75,3 +76,21 @@ class Test_App(unittest.TestCase):
         )
         self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado": 33}))
         self.assertEqual(201, response.status_code)
+
+    def test_post_endpoint_razon_20_entre_5_retorna_4_y_status_200(self):
+        response = self.app.post(
+            "/razon",
+            data = json.dumps({"primer_numero": 20, "segundo_numero": 5}),
+            content_type = "application/json"
+        )
+        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado": 4}))
+        self.assertEqual(201, response.status_code)
+
+    def test_post_endpoint_razon_entre_10_y_0_retorna_status_400(self):
+        response = self.app.post(
+            "/razon",
+            data = json.dumps({"primer_numero": 10, "segundo_numero": 0}),
+            content_type = "application/json"
+        )
+        self.assertEqual(response.data.decode("utf-8"), json.dumps({"error": "Vuelva a la escuela!"}))
+        self.assertEqual(400, response.status_code)
