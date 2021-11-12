@@ -7,7 +7,6 @@ app = Flask(__name__)
 def hola_mundo():
     return '<h1>Game 1</h1>'
 
-
 @app.route('/iri')
 def iri():
     return '<h1>Hola soy Iruuu</h1>'
@@ -33,4 +32,13 @@ def resta():
     datos = request.get_json()
     resta = int(datos["primer_numero"]) - int(datos["segundo_numero"])
     respuesta = {"resultado" : resta}
+
+    return json.dumps(respuesta), 201
+
+@app.route('/producto', methods = ['POST'])
+def producto():
+    datos = request.get_json()
+    producto = int(datos["primer_numero"]) * int(datos["segundo_numero"])
+    respuesta = {"resultado" : producto}
+
     return json.dumps(respuesta), 201

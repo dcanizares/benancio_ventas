@@ -66,3 +66,12 @@ class Test_App(unittest.TestCase):
         )
         self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado":2}))
         self.assertEqual(201, response.status_code)
+    
+    def test_post_endpoint_producto_11_y_3_retorna_33(self):
+        response = self.app.post(
+            "/producto",
+            data = json.dumps({"primer_numero": 11, "segundo_numero": 3}),
+            content_type = "application/json"
+        )
+        self.assertEqual(response.data.decode("utf-8"), json.dumps({"resultado": 33}))
+        self.assertEqual(201, response.status_code)
