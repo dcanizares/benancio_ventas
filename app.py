@@ -10,3 +10,12 @@ def hola_mundo():
 @app.route('/iri')
 def iri():
     return '<h1>Hola soy Iruuu</h1>'
+
+@app.route('/charly')
+def charly():
+    return '<h1>Hola soy Charly</h1>'
+
+@app.route('/saludar/<nombre>')
+def saludar(nombre):
+    return f'Hola soy {nombre}'
+

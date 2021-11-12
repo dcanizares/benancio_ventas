@@ -25,4 +25,21 @@ class Test_App(unittest.TestCase):
 
         self.assertEqual(200, response.status_code)
 
+    def test_endpoint_charly_devuelve_h1_hola_soy_charly_y_status_200(self):
+
+        response = self.app.get('/charly')
+
+        self.assertEqual('<h1>Hola soy Charly</h1>', response.data.decode("utf-8"))
+
+        self.assertEqual(200, response.status_code)
+
+    def test_endpoint_saludar_con_parametro_devuelve_h1_con_parametro(self):
+        response = self.app.get('/saludar/rogelio')
+
+        self.assertEqual('Hola soy rogelio', response.data.decode("utf-8"))
+
+        self.assertEqual(200, response.status_code)
+
+    
+
     
