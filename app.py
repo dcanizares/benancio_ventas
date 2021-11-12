@@ -27,3 +27,10 @@ def suma():
     respuesta = {"resultado": suma}
 
     return json.dumps(respuesta), 201    # manera fea: return Response(response=json.dumps(respuesta), status=201)
+
+@app.route('/resta', methods = ['POST'])
+def resta():
+    datos = request.get_json()
+    resta = int(datos["primer_numero"]) - int(datos["segundo_numero"])
+    respuesta = {"resultado" : resta}
+    return json.dumps(respuesta), 201
